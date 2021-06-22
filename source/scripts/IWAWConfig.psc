@@ -22,7 +22,7 @@ int horizontalID
 int verticalID
 
 bool mustRerender = false
-string configFile = "../iWantArousalWidgets/config.json"
+string configFile = "../iWantArousalWidgetsConfig.json"
 
 IWAWQuest Property IWAW Auto
 
@@ -71,8 +71,14 @@ Event OnPageReset(string page)
 		
 		AddHeaderOption("$IWAWProfile")
 		configSaveID = AddTextOption("$IWAWConfigSave", "$IWAWDoIt")
-		configLoadID = AddTextOption("$IWAWConfigLoad", "")
+		if (JsonUtil.JsonExists(configFile))
+			configLoadID = AddTextOption("$IWAWConfigLoad", "$IWAWDoIt")
+		else
+			configLoadID = AddTextOption("$IWAWConfigLoad", "$IWAWDoIt", OPTION_FLAG_DISABLED)
+		endif
 		
+		AddEmptyOption()
+
 		AddHeaderOption("$IWAWEtc")
 		modEnabledID = AddToggleOption("$IWAWModEnabled", modEnabled)
 		debugLogFlagID = AddToggleOption("$IWAWDebugLogFlag", debugLogFlag)

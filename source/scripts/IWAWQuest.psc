@@ -3,7 +3,7 @@ Scriptname IWAWQuest extends Quest
 ; AppUtil
 
 int Function GetVersion()
-	return 20210412
+	return 20210621
 EndFunction
 
 Function Log(String msg)
